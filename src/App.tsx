@@ -9,7 +9,7 @@ export const App = () => {
   useEffect(() => {
     const getCards = async () => {
       try {
-        const res = await fetch("https://dummyjson.com/carts");
+        const res = await fetch("https://dummyjson.com/cart");
         const data: RootObject = await res.json();
         setCards(data.carts);
       } catch (err) {
@@ -18,11 +18,20 @@ export const App = () => {
           errorMessage = err.message;
         }
         setError(errorMessage);
+        console.log(errorMessage);
       }
     };
 
     getCards();
   }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!cards.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
