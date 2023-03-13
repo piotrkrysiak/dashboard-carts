@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import CartItem from "./components/CartItem";
-import { Cart, RootObject } from "./ts";
+import { useEffect, useState } from 'react';
+import CartItem from './components/CartItem';
+import { Cart, RootObject } from './ts';
 
 export const App = () => {
   const [cards, setCards] = useState<Cart[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const getCards = async () => {
       try {
-        const res = await fetch("https://dummyjson.com/cart");
+        const res = await fetch('https://dummyjson.com/cart');
         const data: RootObject = await res.json();
         setCards(data.carts);
       } catch (err) {
-        let errorMessage = "Failed to do something exceptional";
+        let errorMessage = 'Failed to do something exceptional';
         if (err instanceof Error) {
           errorMessage = err.message;
         }

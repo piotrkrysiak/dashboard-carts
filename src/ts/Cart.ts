@@ -18,7 +18,7 @@ export interface Cart {
   totalQuantity: number;
 }
 
-export default interface RootObject {
+export interface RootObject {
   carts: Cart[];
   total: number;
   skip: number;

@@ -1,5 +1,5 @@
-import { Product } from "../ts";
-import ProductItem from "./ProductItem";
+import { Product } from '../ts';
+import ProductItem from './ProductItem';
 
 interface Props {
   products: Product[];

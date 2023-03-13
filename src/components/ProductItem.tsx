@@ -1,4 +1,4 @@
-import { Product } from "../ts";
+import { Product } from '../ts';
 
 const ProductItem = ({
   id,
