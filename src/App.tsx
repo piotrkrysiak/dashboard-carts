@@ -34,7 +34,7 @@ export const App = () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
       {cards.map((card) => (
         <CartItem
           key={card.id}

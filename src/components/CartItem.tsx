@@ -19,7 +19,7 @@ const CartItem = ({
   totalQuantity,
 }: Props) => {
   return (
-    <div>
+    <div className="bg-red-500 font-bold">
       <h1>Cart</h1>
       <h2>Products</h2>
       {products.map((product) => (
