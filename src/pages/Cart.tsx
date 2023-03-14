@@ -1,3 +1,7 @@
+import { useParams } from 'react-router-dom';
+
 export const Cart = () => {
-  return <div>Cart</div>;
+  const { id } = useParams();
+
+  return <div>Cart {id}</div>;
 };

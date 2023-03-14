@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Product } from '../ts';
 // import ProductItem from './ProductItem';
 
@@ -80,7 +81,7 @@ const CartIcon = () => (
 );
 
 const CartItem = ({
-  // products,
+  products,
   id,
   total,
   discountedTotal,
@@ -89,7 +90,12 @@ const CartItem = ({
   totalQuantity,
 }: Props) => {
   return (
-    <div className="bg-white rounded-xl py-5 px-8 flex justify-between flex-wrap">
+    <Link
+      to={`/carts/${id}`}
+      className="bg-white rounded-xl py-5 px-8 flex justify-between flex-wrap"
+      // pass all the props with params
+      state={{ products }}
+    >
       {/* <h1>Cart</h1>
       <h2>Products</h2> */}
       {/* {products.map((product) => (
@@ -112,7 +118,7 @@ const CartItem = ({
       <Column description="Total Products">{totalProducts}</Column>
       <Column description="Total Quantity">{totalQuantity}</Column>
       <Icon />
-    </div>
+    </Link>
   );
 };
 
