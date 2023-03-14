@@ -24,6 +24,13 @@ npm run check-types || (
     false;
 )
 
+# Run tests
+echo '🧪 Running tests...'
+npm run test || (
+    echo '❌ Tests failed! Please check the error messages above to fix the issue.'
+    false;
+)
+
 # Build the project
 echo '🔨 Building project...'
 npm run build || (
