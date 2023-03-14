@@ -10,7 +10,7 @@ const ProductItem = ({
   discountedPrice,
 }: Product) => {
   return (
-    <div className={`product-item product-item-${id}`}>
+    <div className={`product-item product-item-${id} bg-white`}>
       <h3>{title}</h3>
       <p>Price: {price}</p>
       <p>Quantity: {quantity}</p>

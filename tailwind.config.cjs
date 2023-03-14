@@ -15,6 +15,9 @@ module.exports = {
         sans: ['DMSans', 'sans-serif'],
         bold: ['DMSans-Bold', 'sans-serif'],
       },
+      colors: {
+        background: '#F2F2F2',
+      },
     },
   },
   plugins: [],
