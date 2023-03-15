@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+.container-wrap {
+  @apply container mx-auto px-5 sm:px-8 lg:px-10 xl:max-w-screen-xl 2xl:max-w-screen-2xl;
+}
+
 @font-face {
   font-family: 'DMSans';
   src: url('src/assets/fonts/DMSans-Regular.woff2');

@@ -1,5 +1,5 @@
 import CartItem from '../components/CartItem';
-import Container from '../components/Container';
+import Loading from '../components/Loading';
 import useCarts from '../hooks/useCarts';
 
 export const Carts = () => {
@@ -10,23 +10,31 @@ export const Carts = () => {
   }
 
   if (!carts.length) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
-    <Container className="mx-auto flex flex-col gap-10 py-10">
-      {carts.map((cart) => (
-        <CartItem
-          key={cart.id}
-          id={cart.id}
-          products={cart.products}
-          total={cart.total}
-          discountedTotal={cart.discountedTotal}
-          userId={cart.userId}
-          totalProducts={cart.totalProducts}
-          totalQuantity={cart.totalQuantity}
-        />
-      ))}
-    </Container>
+    <main className="container-wrap">
+      <h1>
+        <span className="text-4xl ">List of carts</span>
+      </h1>
+      <h2 className="pt-4">
+        <span className="text-xl text-black/50">Total: {carts.length}</span>
+      </h2>
+      <section className="flex flex-col gap-10 py-5">
+        {carts.map((cart) => (
+          <CartItem
+            key={cart.id}
+            id={cart.id}
+            products={cart.products}
+            total={cart.total}
+            discountedTotal={cart.discountedTotal}
+            userId={cart.userId}
+            totalProducts={cart.totalProducts}
+            totalQuantity={cart.totalQuantity}
+          />
+        ))}
+      </section>
+    </main>
   );
 };
