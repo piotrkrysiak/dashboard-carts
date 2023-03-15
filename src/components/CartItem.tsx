@@ -33,11 +33,11 @@ const Icon = () => (
 const CartIcon = () => (
   <svg
     width="100%"
-    height="auto"
+    height="14"
     viewBox="0 0 13 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-8"
+    className="w-8 h-auto"
   >
     <g filter="url(#filter0_i_2_39)">
       <path
