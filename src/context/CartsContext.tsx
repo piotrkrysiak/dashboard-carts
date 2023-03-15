@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import { Cart } from '../ts';
 

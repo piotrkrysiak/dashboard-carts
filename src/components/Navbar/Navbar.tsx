@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+interface Props {
+  handleOpen: () => void;
+}
+
+const Navbar = ({ handleOpen }: Props) => {
   return (
     <nav className="container-wrap flex justify-between py-6">
       <Logo />
-      <Button />
+      <button
+        className="w-12 aspect-square rounded-full flex justify-center items-center bg-primary"
+        aria-label="Add item"
+        onClick={handleOpen}
+      >
+        <Icon />
+      </button>
     </nav>
   );
 };
@@ -16,17 +26,6 @@ const Logo = () => {
     <Link to="/carts" className="text-4xl text-primary">
       Logo
     </Link>
-  );
-};
-
-const Button = () => {
-  return (
-    <button
-      className="w-12 aspect-square rounded-full flex justify-center items-center bg-primary"
-      aria-label="Add item"
-    >
-      <Icon />
-    </button>
   );
 };
 

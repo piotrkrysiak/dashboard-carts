@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const WrappedNavbar = () => (
   <BrowserRouter>
-    <Navbar />
+    <Navbar handleOpen={() => {}} />
   </BrowserRouter>
 );
 
