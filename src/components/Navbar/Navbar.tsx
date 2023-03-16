@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Button from '../Button';
 
 interface Props {
   handleOpen: () => void;
@@ -8,13 +9,9 @@ const Navbar = ({ handleOpen }: Props) => {
   return (
     <nav className="container-wrap flex justify-between py-6">
       <Logo />
-      <button
-        className="w-12 aspect-square rounded-full flex justify-center items-center bg-primary"
-        aria-label="Add item"
-        onClick={handleOpen}
-      >
+      <Button aria-label="Add item" onClick={handleOpen}>
         <Icon />
-      </button>
+      </Button>
     </nav>
   );
 };

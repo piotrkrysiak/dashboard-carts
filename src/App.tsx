@@ -39,7 +39,7 @@ const AppShell = () => {
   return (
     <>
       <Navbar handleOpen={handleOpen} />
-      <Popup isOpen={isOpen} handleClose={handleClose} title="Add Cart">
+      <Popup isOpen={isOpen} handleClose={handleClose} title="Add new cart!">
         <StepsForm />
       </Popup>
     </>
