@@ -1,4 +1,4 @@
-const Form = () => {
+const StepsForm = () => {
   return (
     <form role={'form'}>
       <label htmlFor="name">Name</label>
@@ -7,4 +7,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default StepsForm;

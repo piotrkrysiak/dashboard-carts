@@ -1,4 +1,5 @@
-export * from './Cart';
-export * from './NotFound';
-export * from './Carts';
-export * from './Dashboard';
+import Cart from './Cart';
+import Carts from './Carts';
+import NotFound from './NotFound';
+
+export { Cart, Carts, NotFound };

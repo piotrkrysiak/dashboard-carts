@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Navbar, Form, Popup } from './components';
+import { Navbar, Popup, StepsForm } from './components';
+import { Cart, Carts, NotFound } from './pages';
 import useCarts from './hooks/useCarts';
-import { Cart } from './pages/Cart';
-import { Carts } from './pages/Carts';
-import NotFound from './pages/NotFound';
 
 export const App = () => {
   useCarts();
@@ -15,7 +13,6 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/carts" replace />} />
         <Route path="carts" element={<Carts />} />
         <Route path="carts/:id" element={<Cart />} />
-        <Route path="add-cart" element={<Form />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
@@ -43,7 +40,7 @@ const AppShell = () => {
     <>
       <Navbar handleOpen={handleOpen} />
       <Popup isOpen={isOpen} handleClose={handleClose} title="Add Cart">
-        {/* <Form onSubmit={() => {}} /> */}
+        <StepsForm />
       </Popup>
     </>
   );

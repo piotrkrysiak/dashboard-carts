@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import CartItem from '../components/CartItem';
 import Loading from '../components/Loading/Loading';
 import { useCartsContext } from '../context/CartsContext';
 
-export const Carts = () => {
-  const { carts, error, products } = useCartsContext();
-
-  console.log(products);
+const Carts = () => {
+  const { carts, error } = useCartsContext();
 
   if (error) {
     return <div>{error}</div>;
@@ -41,3 +38,5 @@ export const Carts = () => {
     </main>
   );
 };
+
+export default Carts;
