@@ -20,10 +20,18 @@ const Cart = () => {
   const { carts, error } = useCartsContext();
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="container-wrap">{error}</div>;
   }
 
   const cart = carts.find((cart) => cart.id === Number(id));
+
+  if (!carts.length) {
+    return <Loading />;
+  }
+
+  if (!cart) {
+    return <div className="container-wrap">Cart not found</div>;
+  }
 
   const productData = cart?.products.map((product) => {
     return {
@@ -35,10 +43,6 @@ const Cart = () => {
         ) / 100,
     };
   });
-
-  if (!cart) {
-    return <Loading />;
-  }
 
   return (
     <div className="container-wrap">
