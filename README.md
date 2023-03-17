@@ -10,7 +10,7 @@
    - Rename folder to project name OR
    - Copy repo folder
    - Rename folder to project name
-   
+
 ### Open Terminial
 
 - Navigate to projects folder
