@@ -5,6 +5,7 @@ import StepOne from './StepOne';
 import StepThree from './StepThree';
 import StepTwo from './StepTwo';
 import Error from './Error';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   handelClose: () => void;
@@ -17,6 +18,8 @@ const StepsForm = ({ handelClose }: Props) => {
   const [step, setStep] = useState<Step>(1);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
+
   const [cart, setCart] = useState<Cart>({
     id: 0,
     products: [],
@@ -27,7 +30,31 @@ const StepsForm = ({ handelClose }: Props) => {
     totalQuantity: 0,
   });
 
-  console.log(cart.products);
+  const handleOnSubmitOne = (values: { id: number; useId: number }) => {
+    const cartExists = carts.find((cart) => cart.id === values.id);
+    if (cartExists) {
+      setError('Cart already exists');
+    }
+    if (!cartExists) {
+      setCart({
+        ...cart,
+        id: values.id,
+        userId: values.useId,
+      });
+      setStep(2);
+      setError('');
+    }
+  };
+
+  const handleOnSubmitTwo = () => {
+    if (!cart.products.length) {
+      setError('Cart is empty');
+    }
+    if (cart.products.length) {
+      setStep(3);
+      setError('');
+    }
+  };
 
   const addCart = async () => {
     try {
@@ -40,13 +67,21 @@ const StepsForm = ({ handelClose }: Props) => {
           products: cart.products,
         }),
       });
-      const data = await response.json();
-      console.log(data);
-      setCarts([...carts, data]);
+      const data: Cart = await response.json();
+
+      // setting the id because the dummyjson api always returns a cart with id 21
+      const createdCart: Cart = {
+        ...data,
+        id: cart.id,
+      };
+
+      setCarts([...carts, createdCart]);
       handelClose();
+      navigate(`/carts/${cart.id}`);
     } catch (error) {
+      console.log(error);
+
       const errorMessage = 'Failed to add cart';
-      // console.log(error.message);
       setError(errorMessage);
     }
   };
@@ -66,20 +101,7 @@ const StepsForm = ({ handelClose }: Props) => {
       {step === 1 && (
         <StepOne
           onSubmit={(values) => {
-            console.log(values);
-            const cartExists = carts.find((cart) => cart.id === values.id);
-            if (cartExists) {
-              setError('Cart already exists');
-            }
-            if (!cartExists) {
-              setCart({
-                ...cart,
-                id: values.id,
-                userId: values.useId,
-              });
-              setStep(2);
-              setError('');
-            }
+            handleOnSubmitOne(values);
           }}
         />
       )}
@@ -88,15 +110,7 @@ const StepsForm = ({ handelClose }: Props) => {
           products={products}
           setCart={setCart}
           cart={cart}
-          onSubmit={() => {
-            if (!cart.products.length) {
-              setError('Cart is empty');
-            }
-            if (cart.products.length) {
-              setStep(3);
-              setError('');
-            }
-          }}
+          onSubmit={handleOnSubmitTwo}
         />
       )}
       {step === 3 && (

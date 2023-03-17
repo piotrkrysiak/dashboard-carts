@@ -15,6 +15,7 @@ export const App = () => {
         <Route path="carts/:id" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <footer className="py-8"></footer>
     </>
   );
 };

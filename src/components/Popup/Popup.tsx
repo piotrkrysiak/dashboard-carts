@@ -9,12 +9,12 @@ const Popup = ({ title, children, isOpen, handleClose }: Props) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
           <div
             className="absolute top-0 left-0 w-full h-full bg-gray-900 opacity-50"
             onClick={handleClose}
           ></div>
-          <div className="bg-white w-1/2 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto ">
+          <div className="bg-white w-[90%] sm:w-4/5 lg:w-1/2 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto ">
             <div className="py-4 px-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-semibold text-gray-900">{title}</h2>

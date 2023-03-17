@@ -26,7 +26,6 @@ const CartItem = ({
 
   const deleteCart = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-
     const newCarts = carts.filter((cart) => cart.id !== id);
     setCarts(newCarts);
   };
@@ -35,24 +34,9 @@ const CartItem = ({
     <Link
       id={`cart-${id}`}
       to={`/carts/${id}`}
-      className="bg-white rounded-xl py-5 px-8 flex items-center justify-between flex-wrap"
-      // pass all the props with params
+      className="bg-white relative rounded-xl py-5 px-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 lg:gap-8 items-center justify-between flex-wrap"
       state={{ products }}
     >
-      {/* <h1>Cart</h1>
-      <h2>Products</h2> */}
-      {/* {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          quantity={product.quantity}
-          total={product.total}
-          discountPercentage={product.discountPercentage}
-          discountedPrice={product.discountedPrice}
-        />
-      ))} */}
       <CartIcon />
       <Column description="Id">{id}</Column>
       <Column description="Total">{total}</Column>
@@ -60,7 +44,10 @@ const CartItem = ({
       <Column description="User ID">{userId}</Column>
       <Column description="Total Products">{totalProducts}</Column>
       <Column description="Total Quantity">{totalQuantity}</Column>
-      <div onClick={deleteCart}>
+      <div
+        onClick={deleteCart}
+        className="absolute top-5 right-4 lg:relative flex justify-end pr-2 lg:pr-4 lg:top-[unset] lg:right-[unset]"
+      >
         <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
           <path
             fill="red"
@@ -84,29 +71,11 @@ interface ColumnProps {
 const Column = ({ children, description }: ColumnProps) => {
   return (
     <div className="flex flex-col">
-      <span className="font-bold text-xl">{children}</span>
+      <span className="font-bold text-lg lg:text-xl">{children}</span>
       <span className="text-sm text-black/50">{description}</span>
     </div>
   );
 };
-
-// const Icon = () => (
-//   <svg
-//     width="40"
-//     height="40"
-//     viewBox="0 0 40 40"
-//     fill="none"
-//     xmlns="http://www.w3.org/2000/svg"
-//   >
-//     <path
-//       opacity="0.2"
-//       fillRule="evenodd"
-//       clipRule="evenodd"
-//       d="M17.5001 28.3334C17.0734 28.3334 16.6468 28.1701 16.3218 27.8451C15.6701 27.1934 15.6701 26.1401 16.3218 25.4884L21.8301 19.9801L16.5301 14.4918C15.8918 13.8284 15.9101 12.7734 16.5718 12.1351C17.2351 11.4968 18.2901 11.5151 18.9284 12.1751L25.3651 18.8418C25.9968 19.4968 25.9884 20.5351 25.3451 21.1784L18.6784 27.8451C18.3534 28.1701 17.9268 28.3334 17.5001 28.3334Z"
-//       fill="black"
-//     />
-//   </svg>
-// );
 
 const CartIcon = () => (
   <svg

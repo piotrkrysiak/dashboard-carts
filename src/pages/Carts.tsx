@@ -15,13 +15,11 @@ const Carts = () => {
 
   return (
     <main className="container-wrap">
-      <h1>
-        <span className="text-4xl ">List of carts</span>
-      </h1>
+      <h1 className="text-2xl lg:text-4xl">List of carts</h1>
       <h2 className="pt-4">
         <span className="text-xl text-black/50">Total: {carts.length}</span>
       </h2>
-      <section className="flex flex-col gap-10 py-5">
+      <section className="flex flex-col gap-4 lg:gap-8 py-5">
         {carts.map((cart) => (
           <CartItem
             key={cart.id}
