@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useCartsContext } from '../context/CartsContext';
 import { Product } from '../ts';
 // import ProductItem from './ProductItem';
 
@@ -12,23 +13,100 @@ interface Props {
   totalQuantity: number;
 }
 
-const Icon = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      opacity="0.2"
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M17.5001 28.3334C17.0734 28.3334 16.6468 28.1701 16.3218 27.8451C15.6701 27.1934 15.6701 26.1401 16.3218 25.4884L21.8301 19.9801L16.5301 14.4918C15.8918 13.8284 15.9101 12.7734 16.5718 12.1351C17.2351 11.4968 18.2901 11.5151 18.9284 12.1751L25.3651 18.8418C25.9968 19.4968 25.9884 20.5351 25.3451 21.1784L18.6784 27.8451C18.3534 28.1701 17.9268 28.3334 17.5001 28.3334Z"
-      fill="black"
-    />
-  </svg>
-);
+const CartItem = ({
+  products,
+  id,
+  total,
+  discountedTotal,
+  userId,
+  totalProducts,
+  totalQuantity,
+}: Props) => {
+  const { carts, setCarts } = useCartsContext();
+
+  const deleteCart = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    const newCarts = carts.filter((cart) => cart.id !== id);
+    setCarts(newCarts);
+  };
+
+  return (
+    <Link
+      id={`cart-${id}`}
+      to={`/carts/${id}`}
+      className="bg-white rounded-xl py-5 px-8 flex items-center justify-between flex-wrap"
+      // pass all the props with params
+      state={{ products }}
+    >
+      {/* <h1>Cart</h1>
+      <h2>Products</h2> */}
+      {/* {products.map((product) => (
+        <ProductItem
+          key={product.id}
+          id={product.id}
+          title={product.title}
+          price={product.price}
+          quantity={product.quantity}
+          total={product.total}
+          discountPercentage={product.discountPercentage}
+          discountedPrice={product.discountedPrice}
+        />
+      ))} */}
+      <CartIcon />
+      <Column description="Id">{id}</Column>
+      <Column description="Total">{total}</Column>
+      <Column description="Discounted Total">{discountedTotal}</Column>
+      <Column description="User ID">{userId}</Column>
+      <Column description="Total Products">{totalProducts}</Column>
+      <Column description="Total Quantity">{totalQuantity}</Column>
+      <div onClick={deleteCart}>
+        <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+          <path
+            fill="red"
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M5.293 5.293C5.683 4.902 6.316 4.902 6.707 5.293L12 10.586L17.293 5.293C17.684 4.902 18.316 4.902 18.707 5.293C19.098 5.683 19.098 6.316 18.707 6.707L13.414 12L18.707 17.293C19.098 17.684 19.098 18.316 18.707 18.707C18.316 19.098 17.684 19.098 17.293 18.707L12 13.414L6.707 18.707C6.316 19.098 5.683 19.098 5.293 18.707C4.902 18.316 4.902 17.684 5.293 17.293L10.586 12L5.293 6.707C4.902 6.316 4.902 5.683 5.293 5.293Z"
+          />
+        </svg>
+      </div>
+    </Link>
+  );
+};
+
+export default CartItem;
+
+interface ColumnProps {
+  children: React.ReactNode;
+  description: string;
+}
+
+const Column = ({ children, description }: ColumnProps) => {
+  return (
+    <div className="flex flex-col">
+      <span className="font-bold text-xl">{children}</span>
+      <span className="text-sm text-black/50">{description}</span>
+    </div>
+  );
+};
+
+// const Icon = () => (
+//   <svg
+//     width="40"
+//     height="40"
+//     viewBox="0 0 40 40"
+//     fill="none"
+//     xmlns="http://www.w3.org/2000/svg"
+//   >
+//     <path
+//       opacity="0.2"
+//       fillRule="evenodd"
+//       clipRule="evenodd"
+//       d="M17.5001 28.3334C17.0734 28.3334 16.6468 28.1701 16.3218 27.8451C15.6701 27.1934 15.6701 26.1401 16.3218 25.4884L21.8301 19.9801L16.5301 14.4918C15.8918 13.8284 15.9101 12.7734 16.5718 12.1351C17.2351 11.4968 18.2901 11.5151 18.9284 12.1751L25.3651 18.8418C25.9968 19.4968 25.9884 20.5351 25.3451 21.1784L18.6784 27.8451C18.3534 28.1701 17.9268 28.3334 17.5001 28.3334Z"
+//       fill="black"
+//     />
+//   </svg>
+// );
 
 const CartIcon = () => (
   <svg
@@ -79,62 +157,3 @@ const CartIcon = () => (
     </defs>
   </svg>
 );
-
-const CartItem = ({
-  products,
-  id,
-  total,
-  discountedTotal,
-  userId,
-  totalProducts,
-  totalQuantity,
-}: Props) => {
-  return (
-    <Link
-      id={`cart-${id}`}
-      to={`/carts/${id}`}
-      className="bg-white rounded-xl py-5 px-8 flex justify-between flex-wrap"
-      // pass all the props with params
-      state={{ products }}
-    >
-      {/* <h1>Cart</h1>
-      <h2>Products</h2> */}
-      {/* {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          quantity={product.quantity}
-          total={product.total}
-          discountPercentage={product.discountPercentage}
-          discountedPrice={product.discountedPrice}
-        />
-      ))} */}
-      <CartIcon />
-      <Column description="Id">{id}</Column>
-      <Column description="Total">{total}</Column>
-      <Column description="Discounted Total">{discountedTotal}</Column>
-      <Column description="User ID">{userId}</Column>
-      <Column description="Total Products">{totalProducts}</Column>
-      <Column description="Total Quantity">{totalQuantity}</Column>
-      <Icon />
-    </Link>
-  );
-};
-
-export default CartItem;
-
-interface ColumnProps {
-  children: React.ReactNode;
-  description: string;
-}
-
-const Column = ({ children, description }: ColumnProps) => {
-  return (
-    <div className="flex flex-col">
-      <span className="font-bold text-xl">{children}</span>
-      <span className="text-sm text-black/50">{description}</span>
-    </div>
-  );
-};
