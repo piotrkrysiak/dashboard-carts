@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import Form from './StepsForm';
+import StepsForm from './StepsForm';
 
 describe('Form', () => {
   it('Renders the form', () => {
-    render(<Form />);
-    expect(screen.getByRole('form')).toBeInTheDocument();
+    render(<StepsForm handelClose={() => {}} />);
+    expect(screen.getByText('Total:')).toBeInTheDocument();
   });
 });

@@ -44,18 +44,22 @@ const StepTwo = ({ products, onSubmit, cart, setCart }: Props) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 overflow-auto max-h-[300px] my-6">
+      <div className="flex flex-col gap-4 overflow-auto max-h-256 my-4">
         {products.map((product) => (
-          <label key={product.id} className="flex gap-2">
+          <label
+            key={product.id}
+            className="flex gap-2 items-center cursor-pointer"
+          >
             <input
               type="checkbox"
+              className="w-5 h-5 accent-primary"
               checked={selectedProducts.some((p) => p.id === product.id)}
               onChange={() => handleCheckboxChange(product)}
             />
             <div className="grid grid-cols-12 gap-4 items-center w-full">
               <p className="col-span-5 font-bold">{product.title}</p>
               <p className="col-span-2">{product.price}$</p>
-              <p className="col-span-2">{product.total}</p>
+              <p className="col-span-2">{product.total}$</p>
               <p className="col-span-2">{product.discountedPrice}$</p>
               <p className="col-span-1">{product.quantity}</p>
             </div>

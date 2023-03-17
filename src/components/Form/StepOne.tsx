@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import { number, object } from 'yup';
 import Button from '../Button';
-import ErrorMessage from './ErrorMessage';
 import Icon from './Icon';
+import Input from './Input';
 
 interface Props {
   onSubmit: (values: { id: number; useId: number }) => void;
@@ -14,7 +14,10 @@ const MyForm = ({ onSubmit }: Props) => {
       .integer()
       .positive('ID must be a positive integer')
       .required('ID is required'),
-    useId: number().required('Use ID is required'),
+    useId: number()
+      .integer()
+      .positive('Use ID must be a positive integer')
+      .required('Use ID is required'),
   });
 
   const formik = useFormik({
@@ -23,38 +26,32 @@ const MyForm = ({ onSubmit }: Props) => {
       useId: 0,
     },
     validationSchema: validationSchema,
+    validateOnChange: false,
     onSubmit: onSubmit,
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <label htmlFor="id">ID:</label>
-        <input
-          type="number"
-          id="id"
-          name="id"
-          onChange={formik.handleChange}
-          value={formik.values.id}
-        />
-        {formik.touched.id && formik.errors.id && (
-          <ErrorMessage>{formik.errors.id}</ErrorMessage>
-        )}
-      </div>
-      <div>
-        <label htmlFor="useId">Use ID:</label>
-        <input
-          type="number"
-          id="useId"
-          name="useId"
-          onChange={formik.handleChange}
-          value={formik.values.useId}
-        />
-        {formik.touched.useId && formik.errors.useId && (
-          <ErrorMessage>{formik.errors.useId}</ErrorMessage>
-        )}
-      </div>
-      <Button type="submit">
+    <form onSubmit={formik.handleSubmit} className="pt-4">
+      <Input
+        label="Id"
+        id="id"
+        name="id"
+        value={formik.values.id}
+        onChange={formik.handleChange}
+        error={formik.errors.id}
+        type="number"
+      />
+      <Input
+        label="UserId"
+        id="useId"
+        name="useId"
+        value={formik.values.useId}
+        onChange={formik.handleChange}
+        error={formik.errors.useId}
+        type="number"
+        className="mb-4"
+      />
+      <Button type="submit" className="ml-auto">
         <Icon />
       </Button>
     </form>

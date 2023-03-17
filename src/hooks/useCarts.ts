@@ -29,7 +29,11 @@ const useCarts = () => {
         setCarts(data.carts);
         mapProducts(data.carts);
       } catch (err) {
-        setError('Failed to fetch data');
+        let errorMessage = 'Failed to do something exceptional';
+        if (err instanceof Error) {
+          errorMessage = err.message;
+        }
+        setError(errorMessage);
       }
     };
 

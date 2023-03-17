@@ -11,18 +11,28 @@ const StepThree = ({ products, onSubmit }: Props) => {
   console.log(products);
 
   return (
-    <div>
-      {products.map((product) => (
-        <div key={product.id} className="flex gap-2">
-          <p>{product.title}</p>
-          <p>{product.price}$</p>
-          <p>{product.quantity}</p>
+    <>
+      <div className="py-4">
+        Poducts:
+        <div className="overflow-auto max-h-256">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="grid grid-cols-12 gap-4 items-center w-full"
+            >
+              <p className="col-span-5 font-bold">{product.title}</p>
+              <p className="col-span-2">{product.price}$</p>
+              <p className="col-span-2">{product.total}$</p>
+              <p className="col-span-2">{product.discountedPrice}$</p>
+              <p className="col-span-1">{product.quantity}</p>
+            </div>
+          ))}{' '}
         </div>
-      ))}
-      <Button onClick={onSubmit}>
+      </div>
+      <Button onClick={onSubmit} className="ml-auto">
         <Icon />
       </Button>
-    </div>
+    </>
   );
 };
 

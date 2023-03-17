@@ -19,6 +19,9 @@ module.exports = {
         background: '#F2F2F2',
         primary: '#4339F2',
       },
+      spacing: {
+        256: '256px',
+      },
     },
   },
   plugins: [],

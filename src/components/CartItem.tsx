@@ -91,6 +91,7 @@ const CartItem = ({
 }: Props) => {
   return (
     <Link
+      id={`cart-${id}`}
       to={`/carts/${id}`}
       className="bg-white rounded-xl py-5 px-8 flex justify-between flex-wrap"
       // pass all the props with params
