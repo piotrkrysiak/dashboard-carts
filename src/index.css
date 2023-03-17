@@ -27,14 +27,14 @@ a {
 
 @font-face {
   font-family: 'DMSans';
-  src: url('src/assets/fonts/DMSans-Regular.woff2');
+  src: url('./assets/fonts/DMSans-Regular.woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DMSans-Bold';
-  src: url('src/assets/fonts/DMSans-Bold.woff2');
+  src: url('./assets/fonts/DMSans-Bold.woff2');
   font-weight: 700;
   font-style: normal;
 }
