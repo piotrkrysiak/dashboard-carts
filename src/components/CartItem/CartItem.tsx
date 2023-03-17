@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useCartsContext } from '../context/CartsContext';
-import { Product } from '../ts';
-// import ProductItem from './ProductItem';
+import { useCartsContext } from '../../context/CartsContext';
+import { Product } from '../../ts';
 
 interface Props {
   id: number;

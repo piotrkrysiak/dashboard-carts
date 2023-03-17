@@ -1,4 +1,4 @@
-import CartItem from '../components/CartItem';
+import CartItem from '../components/CartItem/CartItem';
 import Loading from '../components/Loading/Loading';
 import { useCartsContext } from '../context/CartsContext';
 
